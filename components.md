@@ -2,7 +2,7 @@
 
 What are [components](https://docs.dagster.io/guides/build/components) in Dagster? I had some difficulties understanding the idea and concepts behind Dagster components - it is also a very new addition. Of course, you get the it if you start working with it and carefully read the documentation but let me try to explain it with my words.
 
-Dagster components are an alternative way to create reusable elements like assets, asset checks, schedules, sensors, jobs, resources, and more. And to be very exact, Dagster components are a way to create isolated components that will return a `Dagster Definitions` object. Inspect this [class](https://github.com/dagster-io/dagster/blob/e5f6d24e58a6e731ea351a09e842bbf9e20aa6a4/python_modules/dagster/dagster/_core/definitions/definitions_class.py#L329)
+Dagster components are an alternative way to create reusable elements like assets, asset checks, schedules, sensors, jobs, resources, and more. And to be very exact, Dagster components are a way to create isolated components that will return a `Dagster Definitions` object. Inspect this [class](https://github.com/dagster-io/dagster/blob/e5f6d24e58a6e731ea351a09e842bbf9e20aa6a4/python_modules/dagster/dagster/_core/definitions/definitions_class.py#L329) to see and understand what is possible.
 
 Still not there? Let me give you an example. Usually you will not use components until you are in a more advanced stage of using Dagster. Because you read a blog post about it or just because you wanted to improve the quality of life of your dear colleagues.
 
