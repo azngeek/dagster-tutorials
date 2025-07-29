@@ -80,3 +80,22 @@ But let me show you, what we actually want to have.
 ├── pyproject.toml
 └── uv.lock
 ```
+
+So to get the functionality to automatically register the components with the definition, we need to change the way, how definitions are loaded. As our plan is to migrate/refactor the service to a component and autoload it, we can use the `Definitions.merge` method to do it.
+
+```
+defs = dg.Definitions.merge(
+    dg.Definitions(
+        assets=assets,
+        schedules=schedules,
+        # resources={
+        #  'my_service': MyService(api_key='donttellme')
+        # }
+    ),
+    dg.components.load_from_defs_folder(project_root=Path(__file__).parent.parent),
+)
+```
+
+## Whats next?
+
+Curious about what comes next? I will continue with this tutorial to just complete it, but in the meanwhile let me know if this was helpful so far :) 
