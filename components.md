@@ -44,4 +44,39 @@ What if there would be an option to not edit the `definitions.py` file at all an
 - Any component can be configured via a humand readable configuration file in `yaml`.
 - The configuration files need to be read, initialized and the loaded entities appended to the main definitions configuration.
 
-I hope you see, where this is going. Let us go b
+I hope you see, where this is going. I will continue with the official [migration guide](https://docs.dagster.io/guides/build/projects/moving-to-components/migrating-project) for existing projects. This is what the official documentation shows. I adapted it to our needs.
+
+```
+.
+├── my_existing_project
+│   ├── __init__.py
+│   ├── assets.py
+│   ├── definitions.py
+│   ├── resources
+│   │    └── my_service.py
+│   └── py.typed
+├── pyproject.toml
+└── uv.lock
+```
+
+But let me show you, what we actually want to have. 
+
+- There is a new directory `defs` which will contain a configurable definition for each resource.
+- The components are also placed in a new directory called `components`.
+
+
+```
+.
+├── my_existing_project
+│   ├── __init__.py
+│   ├── assets.py
+│   ├── definitions.py
+│   ├── components
+│   │    └── my_service_component.py
+│   ├── defs // This is important
+│   │    └── my_client
+│   │       └── defs.yaml
+│   └── py.typed
+├── pyproject.toml
+└── uv.lock
+```
