@@ -88,9 +88,13 @@ But let me show you, what we actually want to have.
 
 # Autoload the component
 
-So to get the functionality to automatically register the components with the definition, we need to change the way, how definitions are loaded. As our plan is to migrate/refactor the service to a component and autoload it, we can use the `Definitions.merge` method to do it.
+So to get the functionality to automatically register the components with the definition, we need to change the way, how definitions are loaded. As our plan is to migrate/refactor the service to a component and autoload it, we can use the `Definitions.merge()` method to do it.
+Take a closer look at, how the existing definitions-file needs to be modified. 
+
 
 ```
+# definitions.py
+
 defs = dg.Definitions.merge(
     dg.Definitions(
         assets=assets,
@@ -102,6 +106,29 @@ defs = dg.Definitions.merge(
     dg.components.load_from_defs_folder(project_root=Path(__file__).parent.parent),
 )
 ```
+
+- The resource must not be loaded directly but will instead be loaded from the definition *files* located in the `defs` directory.
+- The resource key `my_service` will also be exposed by the component `build_defs()` method, which will look like the following example. Don't worry, I am going to show the full example soon.
+
+For the moment accept, that there will be a component which will return a `Definitions` object, which will be merged within the existing definitions by autoloading all files from the `defs` directory.
+
+```
+...
+class MyApiClient(dg.Component, dg.Resolvable):
+
+   ...
+    def build_defs(self, context: dg.ComponentLoadContext) -> dg.Definitions:
+        return dg.Definitions(
+            resources={
+                'strapi_client': Client()
+            }
+        )
+...
+```
+
+# The component
+
+
 
 ## Whats next?
 
