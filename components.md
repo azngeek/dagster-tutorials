@@ -4,6 +4,9 @@ What are [components](https://docs.dagster.io/guides/build/components) in Dagste
 
 Dagster components are an alternative way to create reusable elements like assets, asset checks, schedules, sensors, jobs, resources, and more. And to be very exact, Dagster components are a way to create isolated components that will return a `Dagster Definitions` object. Inspect this [class](https://github.com/dagster-io/dagster/blob/e5f6d24e58a6e731ea351a09e842bbf9e20aa6a4/python_modules/dagster/dagster/_core/definitions/definitions_class.py#L329) to see and understand what is possible.
 
+
+# The role of the definitions object
+
 Still not there? Let me give you an example. Usually you will not use components until you are in a more advanced stage of using Dagster. Because you read a blog post about it or just because you wanted to improve the quality of life of your dear colleagues.
 
 This is how the definition of a typical Dagster definition object looks. There is a very high chance it will look like this. You might have more or less. :)
@@ -19,6 +22,8 @@ defs = Definitions(
   }
 )
 ```
+
+# Create a simple service
 
 Now let me pick up any part of the definitions to explain the concept of `Dagster Components`. It could be anything because you can make a component out of it, if it returns a `Dagster Definition`. I choose resources. The official documentation makes some assumptions upfront you should know, when you need to convert your project layout to a Dagster Component compatible layout. If you want this question to be answered: It is still to early, but I will point it out. For now, we will continue with the class definition of this service, how it would look like. 
 
@@ -80,6 +85,8 @@ But let me show you, what we actually want to have.
 ├── pyproject.toml
 └── uv.lock
 ```
+
+# Autoload the component
 
 So to get the functionality to automatically register the components with the definition, we need to change the way, how definitions are loaded. As our plan is to migrate/refactor the service to a component and autoload it, we can use the `Definitions.merge` method to do it.
 
