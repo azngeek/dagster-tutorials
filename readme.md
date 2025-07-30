@@ -8,7 +8,9 @@ for the components in the folder `/components`.
 
 Each project is initialized with `uvx -U create-dagster project <name>`, so I try to ensure that you can follow everything.
 
-- I prefer to use `dagster-cli` instead of `dagster`. The difference is that i will rather use the `dg ...` command instead `dagster ...`.
+- I prefer to use the `dagster-dg-cli` package for better development experience. It is also included in the dev-requirements for every dagster project if you scaffold a new dagster project. The difference is that i will rather use the `dg ...` command instead `dagster ...`.
+
+
 
 # Run a test project
 You do not need to do this but just checkout this repository, then run `uv sync` for each project you are interested in and that's it.
